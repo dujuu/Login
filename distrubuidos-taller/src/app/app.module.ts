@@ -9,6 +9,7 @@ import { CrearCuentaComponent } from './crear-cuenta/crear-cuenta.component';
 import { RecuperarClaveComponent } from './recuperar-clave/recuperar-clave.component';
 import { AppRoutingModule } from './app-routing.module';
 import { ReactiveFormsModule } from '@angular/forms';
+import { CuentaComponent } from './cuenta/cuenta.component';
 
 
 
@@ -19,7 +20,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     FootComponent,
     IniciosesionComponent,
     CrearCuentaComponent,
-    RecuperarClaveComponent
+    RecuperarClaveComponent,
+    CuentaComponent
   ],
   imports: [
     BrowserModule,
