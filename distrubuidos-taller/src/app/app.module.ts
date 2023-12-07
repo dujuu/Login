@@ -10,7 +10,7 @@ import { RecuperarClaveComponent } from './recuperar-clave/recuperar-clave.compo
 import { AppRoutingModule } from './app-routing.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CuentaComponent } from './cuenta/cuenta.component';
-
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -27,6 +27,7 @@ import { CuentaComponent } from './cuenta/cuenta.component';
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

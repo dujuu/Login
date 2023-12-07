@@ -9,12 +9,12 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class RecuperarClaveComponent {
   recuperarForm=this.formBuilder.group({
     email:['',[Validators.required,Validators.email]],
-    password: ['',Validators.required],
+    
   }
   )
   constructor(private formBuilder:FormBuilder){}
 
-  login(){
+  recuperar(){
     if(this.recuperarForm.valid){
       console.log("llamada servidor");
     }
