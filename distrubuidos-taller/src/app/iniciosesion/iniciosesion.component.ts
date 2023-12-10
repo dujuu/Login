@@ -10,6 +10,7 @@ import { LoginReq } from '../services/auth/loginReq';
   styleUrls: ['./iniciosesion.component.css']
 })
 export class IniciosesionComponent {
+    loginError:string="";
     loginForm=this.formBuilder.group({
     email:['',[Validators.required,Validators.email]],
     password: ['',Validators.required],
@@ -20,9 +21,20 @@ constructor(private formBuilder:FormBuilder,private router:Router, private login
    //funcion para ver la logica del boton
   login(){
     if(this.loginForm.valid){
-      this.loginService.login(this.loginForm.value as LoginReq); // captura lo que ingresa en el input
-      this.router.navigateByUrl('/registar-usuario'); //aqui donde envia una ves que se tenga todos los campos rellenos
-      this.loginForm.reset();// en caso de error se borra
+      this.loginService.login(this.loginForm.value as LoginReq).subscribe({
+        next: (userData) =>{
+          console.log(userData);       },
+        error: (errorData)=>{
+          console.error(errorData);
+          this.loginError=errorData;
+        },
+        complete: () =>{
+          console.info("login completo");
+          this.router.navigateByUrl('/cuenta'); //aqui donde envia una ves que se tenga todos los campos rellenos
+          this.loginForm.reset();// en caso de error se borra
+        }
+      })// captura lo que ingresa en el input
+
     }
     else{
       alert("error ingresar ");
