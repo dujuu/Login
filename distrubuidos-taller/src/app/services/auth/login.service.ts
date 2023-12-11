@@ -17,7 +17,7 @@ export class LoginService {
   constructor(private http: HttpClient) { }
 
   iniciarSesion(correo: string, contraseña: string) {
-    return this.http.post('/api/usuarios/iniciar-sesion', { correo, contraseña });
+    return this.http.post('../usuarios/iniciar-sesion', { correo, contraseña });
   }
 
   obtenerDatos() {

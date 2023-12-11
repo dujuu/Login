@@ -23,8 +23,9 @@ export class ServiceClienteService {
     return this.servicio.get(this.servidor1);
   }
 
-  CrearUsuario(datos:Usuario):Observable <any>{
-    return this.servicio.post('${this.servidor2}/crearUsuario',JSON.stringify(datos),httpOptions);
+  CrearUsuario(datos: Usuario):Observable <any>{
+    console.log(JSON.stringify(datos));
+    return this.servicio.post(this.servidor2,JSON.stringify(datos),httpOptions);
   }
 
 
