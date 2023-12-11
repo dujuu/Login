@@ -7,6 +7,7 @@ import { User } from './user';
 @Injectable({
   providedIn: 'root'
 })
+
 export class LoginService {
   private apiUrl = 'http://localhost:3000';
 
@@ -15,9 +16,13 @@ export class LoginService {
 
   constructor(private http: HttpClient) { }
 
+  iniciarSesion(correo: string, contraseña: string) {
+    return this.http.post('/api/usuarios/iniciar-sesion', { correo, contraseña });
+  }
+
   obtenerDatos() {
     return this.http.get(`${this.apiUrl}/ruta-de-datos`);
-    
+
   }
   login(credentials:LoginReq):Observable<User>{
     return this.http.get<User>('././assets/data.json').pipe(

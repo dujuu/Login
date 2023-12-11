@@ -83,10 +83,40 @@ const ModificarUsuario = async(req,res,next)=> {
     }
 }
 
+
+
+
+// Iniciar sesión
+const IniciarSesion = async (req, res, next) => {
+    try {
+        const { correo, contraseña } = req.body;
+        const result = await pool.query('SELECT * FROM usuario WHERE correo = $1', [correo]);
+
+        if (result.rows.length === 0) {
+            return res.status(404).json({ message: "Usuario no encontrado" });
+        }
+
+        const usuario = result.rows[0];
+        // Aquí deberías verificar la contraseña. Esto depende de cómo almacenes las contraseñas
+        // Si usas hash, debes comparar el hash de la contraseña proporcionada con el almacenado
+
+        if (contraseña === usuario.contraseña) { // Esto es solo un ejemplo simple
+            // Enviar algún tipo de token o indicador de sesión exitosa
+            res.json({ message: "Inicio de sesión exitoso" });
+        } else {
+            res.status(401).json({ message: "Contraseña incorrecta" });
+        }
+    } catch (error) {
+        next(error);
+    }
+};
+
+
 module.exports = {
     ObtenerDatos,
     ObtenerUsuario,
     AgregarUsuario,
     EliminarUsuario,
-    ModificarUsuario
+    ModificarUsuario,
+    IniciarSesion
 }

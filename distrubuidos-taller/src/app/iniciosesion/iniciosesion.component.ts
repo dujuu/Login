@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
-import { LoginService } from '../services/auth/login.service';
-import { LoginReq } from '../services/auth/loginReq';
+import { LoginService } from '../services/auth/login.service'; // Asumiendo que LoginService es el correcto
 
 @Component({
   selector: 'app-iniciosesion',
@@ -10,36 +9,37 @@ import { LoginReq } from '../services/auth/loginReq';
   styleUrls: ['./iniciosesion.component.css']
 })
 export class IniciosesionComponent {
-    loginError:string="";
-    loginForm=this.formBuilder.group({
-    email:['',[Validators.required,Validators.email]],
-    password: ['',Validators.required],
-  }
-  )
-constructor(private formBuilder:FormBuilder,private router:Router, private loginService: LoginService){}
 
-   //funcion para ver la logica del boton
-  login(){
-    if(this.loginForm.valid){
-      this.loginService.login(this.loginForm.value as LoginReq).subscribe({
-        next: (userData) =>{
-          console.log(userData);       },
-        error: (errorData)=>{
-          console.error(errorData);
-          this.loginError=errorData;
+  loginError: string = "";
+  loginForm: FormGroup = this.formBuilder.group({
+    email: ['', [Validators.required, Validators.email]],
+    password: ['', Validators.required]
+  });
+
+  constructor(private formBuilder: FormBuilder, private router: Router, private loginService: LoginService) { }
+
+  login() {
+    if (this.loginForm.valid) {
+      const email = this.loginForm.value.email;
+      const password = this.loginForm.value.password;
+
+      this.loginService.iniciarSesion(email, password).subscribe({
+        next: (userData) => {
+          console.log(userData);
+          this.router.navigateByUrl('/iniciar-sesion'); // Navegación tras inicio de sesión exitoso
         },
-        complete: () =>{
-          console.info("login completo");
-          this.router.navigateByUrl('/cuenta'); //aqui donde envia una ves que se tenga todos los campos rellenos
-          this.loginForm.reset();// en caso de error se borra
+        error: (errorData) => {
+          console.error(errorData);
+          this.loginError = errorData; // Manejo de error
+        },
+        complete: () => {
+          console.info("Inicio de sesión completado");
+          this.loginForm.reset(); // Resetear formulario
         }
-      })// captura lo que ingresa en el input
-
-    }
-    else{
-      alert("error ingresar ");
+      });
+    } else {
+      alert("Por favor, ingresa un correo electrónico y contraseña válidos.");
     }
   }
 }
-
 

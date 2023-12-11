@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import{HttpClient} from '@angular/common/http';
 import{Observable} from 'rxjs';
+import { Usuario } from '../interfaces/usuario';
 
 
 @Injectable({
@@ -14,9 +15,14 @@ export class ServiceClienteService {
 
 
   constructor (private servicio:HttpClient) {}
-  MostrarDatos():Observable <any>{
-     return this.servicio.get(this.servidor1);
 
+  MostrarDatos():Observable <any>{
+    return this.servicio.get(this.servidor1);
+  }
+
+  CrearUsuario(datos:Usuario):Observable <any>{
+    console.log(JSON.stringify(datos));
+    return this.servicio.post('${this.servidor2}/crearUsuario',JSON.stringify(datos));
   }
 
 }
