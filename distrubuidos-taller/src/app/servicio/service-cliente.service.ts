@@ -1,8 +1,11 @@
 import { Injectable } from '@angular/core';
-import{HttpClient} from '@angular/common/http';
+import{HttpClient, HttpHeaders} from '@angular/common/http';
 import{Observable} from 'rxjs';
 import { Usuario } from '../interfaces/usuario';
 
+const httpOptions = {
+  headers:new HttpHeaders({'Content-Type':'application/json'})
+};
 
 @Injectable({
   providedIn: 'root'
@@ -21,8 +24,8 @@ export class ServiceClienteService {
   }
 
   CrearUsuario(datos:Usuario):Observable <any>{
-    console.log(JSON.stringify(datos));
-    return this.servicio.post('${this.servidor2}/crearUsuario',JSON.stringify(datos));
+    return this.servicio.post('${this.servidor2}/crearUsuario',JSON.stringify(datos),httpOptions);
   }
+
 
 }

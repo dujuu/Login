@@ -38,7 +38,6 @@ const AgregarUsuario= async (req, res,next) => {
             "INSERT INTO usuario (nombre, apellido, correo, contraseña, usuario) VALUES ($1, $2, $3 ,$4 ,$5 ) RETURNING *",
             [nombre, apellido, correo, contraseña, usuario]
         );
-    
         res.json(result.rows[0]);
     } catch(error) {
         next(error)

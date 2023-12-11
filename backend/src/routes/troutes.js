@@ -15,7 +15,7 @@ router.get('/obtener/:usuario', ObtenerUsuario);
 
 router.post('/agregar', AgregarUsuario);
 
-router.post('/iniciar-sesion', IniciarSesion);
+//router.post('/iniciar-sesion', IniciarSesion);
 
 router.delete('/eliminar', EliminarUsuario);
 
