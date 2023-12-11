@@ -13,7 +13,7 @@
                   <a href="#" class="text-gray-900 px-3 py-2 rounded-md text-sm font-medium">Dashboard</a>
                   <a href="#" class="text-gray-900 px-3 py-2 rounded-md text-sm font-medium">Mapas</a>
                   <a href="#" class="text-gray-900 px-3 py-2 rounded-md text-sm font-medium">Configuración</a>
-              </div>
+                </div>
           </div>
       </div>
   </nav>
@@ -24,6 +24,22 @@
               Panel de Gestión de Localización
           </h1>
       </div>
+      <table>
+        <tr>
+          <th> Id</th>
+          <th> Nombre</th>
+          <th>Apellido</th>
+          <th> Usuario</th>
+          <th>Correo electronico</th>
+        </tr>
+        <tr *ngFor="let item of datosC">
+          <td>{{item.id}}</td>
+          <td>{{item.nombre}}</td>
+          <td>{{item.apellido}}</td>
+          <td>{{item.correo}}</td>
+          <td>{{item.usuario}}</td>
+        </tr>
+      </table>
   </header>
 
   <main>
