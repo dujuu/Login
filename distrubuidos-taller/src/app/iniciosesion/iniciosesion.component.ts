@@ -31,7 +31,7 @@ export class IniciosesionComponent {
       this.loginService.iniciarSesion(email, password).subscribe({
         next: (userData) => {
           console.log(userData);
-          this.router.navigateByUrl('/iniciar-sesion'); // Navegación tras inicio de sesión exitoso
+          this.router.navigateByUrl('/iniciar-sesion');
         },
         error: (errorData) => {
           console.error(errorData);
@@ -71,7 +71,7 @@ export class IniciosesionComponent {
     }
 
     else {
-      alert("puto el que lo lea");
+      alert("Ingrese un Correo y una Contraseña valida");
     }
   }
 }
