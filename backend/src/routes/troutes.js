@@ -4,18 +4,22 @@ const {
     ObtenerDatos,
     ObtenerUsuario,
     AgregarUsuario,
-    ModificarUsuario, 
+    ModificarUsuario,
+    IniciarSesion, 
 } = require('../conrollers/controllers');
 
 const router = Router();
 
-router.get('/usuario', ObtenerDatos);
+router.get('/obtener', ObtenerDatos);
 
-router.get('/obtener/:usuario', ObtenerUsuario);
+//router.get('/obtener/:usuario', ObtenerUsuario);
 
-router.post('/agregar',bodyParser.json, AgregarUsuario);
+//router.post('/Iniciar/:correo,contraseña',IniciarSesion);
+// this.httpClient.post('/IniciarSesion', { correo, contraseña })
+//     .subscribe(...);
 
-router.post('/iniciar-sesion', IniciarSesion);
+router.post('/IniciarSesion', IniciarSesion);
+router.post('/agregar', AgregarUsuario);
 
 router.delete('/eliminar', EliminarUsuario);
 

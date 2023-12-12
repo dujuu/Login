@@ -11,6 +11,7 @@ try{
   }
 }
 
+
 // mostramos una tarea segun un dato espesifico
 const ObtenerUsuario = async (req,res,next)=> {
 try{
@@ -29,18 +30,19 @@ try{
 }
 };
 
+
 // agregamos un usuario 
-const AgregarUsuario= async (req, res,next) => {
+const AgregarUsuario = async (req, res, next) => {
     const { nombre, apellido, correo, contraseña, usuario } = req.body;
 
-    try{
+    try {
         const result = await pool.query(
-            "INSERT INTO usuario (nombre, apellido, correo, contraseña, usuario) VALUES ($1, $2, $3 ,$4 ,$5 ) RETURNING *",
+            "INSERT INTO usuario (nombre, apellido, correo, contraseña, usuario) VALUES ($1, $2, $3, $4, $5) RETURNING *",
             [nombre, apellido, correo, contraseña, usuario]
         );
         res.json(result.rows[0]);
-    } catch(error) {
-        next(error)
+    } catch (error) {
+        next(error);
     }
 };
 
@@ -89,7 +91,7 @@ const ModificarUsuario = async(req,res,next)=> {
 const IniciarSesion = async (req, res, next) => {
     try {
         const { correo, contraseña } = req.body;
-        const result = await pool.query('SELECT * FROM usuario WHERE correo = $1', [correo]);
+        const result = await pool.query('SELECT correo, contraseña FROM usuario WHERE correo like "$1" ', [correo]);
 
         if (result.rows.length === 0) {
             return res.status(404).json({ message: "Usuario no encontrado" });
@@ -117,5 +119,6 @@ module.exports = {
     AgregarUsuario,
     EliminarUsuario,
     ModificarUsuario,
-    IniciarSesion
+    IniciarSesion,
+
 }

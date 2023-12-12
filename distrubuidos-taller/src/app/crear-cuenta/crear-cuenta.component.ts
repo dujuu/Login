@@ -45,10 +45,14 @@ if (this.registerForm.valid) {
         correo: this.registerForm.get("correo")?.value,
         contraseña: this.registerForm.get("contraseña")?.value,
         usuario: this.registerForm.get("usuario")?.value
+
+        //return this.servicioCliente.CrearUsuario(datosc)
     });
   }
+
 }
 }
+
 
 
   //register(){
