@@ -14,7 +14,7 @@ export class CuentaComponent {
 
   ngOnInit(): void{
     this.servicioCliente.MostrarDatos().subscribe(datos => {
-      for(let i=0;i<datos.length;i++){
+      for(let i=0; i<datos.length; i++){
         this.datosC.push(datos[i]);
       }
       console.log(datos);

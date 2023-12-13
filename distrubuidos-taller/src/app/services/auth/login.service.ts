@@ -52,4 +52,5 @@ export class LoginService {
   register(credentials:any){
     console.log(credentials);
   }
+
 }

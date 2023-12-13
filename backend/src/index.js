@@ -8,7 +8,7 @@ const app = express();
 
 // Habilitar CORS
 app.use(cors({
-    origin: 'http://localhost:3500' // Asegúrate de cambiar esto si tu origen frontend cambia
+   // origin: 'http://localhost:3500' // Asegúrate de cambiar esto si tu origen frontend cambia
 }));
 
 

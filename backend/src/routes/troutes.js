@@ -19,7 +19,7 @@ router.get('/obtener', ObtenerDatos);
 //     .subscribe(...);
 
 router.post('/IniciarSesion', IniciarSesion);
-router.post('/agregar', AgregarUsuario);
+router.get('/agregar', AgregarUsuario);
 
 router.delete('/eliminar', EliminarUsuario);
 

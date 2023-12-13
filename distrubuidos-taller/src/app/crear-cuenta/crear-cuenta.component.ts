@@ -21,6 +21,7 @@ export class CrearCuentaComponent implements OnInit {
     usuario:['',Validators.required]
 
   });
+
   //datosC:Array<Usuario>=[];
  /* registerForm=this.formBuilder.group({
     email:['',[Validators.required,Validators.email]],

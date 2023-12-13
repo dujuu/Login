@@ -50,17 +50,17 @@ export class IniciosesionComponent {
       console.info(this.loginForm.value.contraseña);
       console.log("**********************")
       if (this.loginForm.valid){
-        const correo = this.loginForm.value.correo;
-        const contraseña = this.loginForm.value.contraseña;
+        const correo1 = this.loginForm.value.correo;
+        const contraseña1 = this.loginForm.value.contraseña;
         console.info("llegue el if ssuu");
 
-        this.servicioCliente.IniciarSesion(correo, contraseña).subscribe({
+        this.servicioCliente.IniciarSesion(correo1, contraseña1).subscribe({
           next: (userData) => {
             console.log(userData);
-            //this.router.navigateByUrl('/cuenta'); // Navegación tras inicio de sesión exitoso
+            this.router.navigateByUrl('/cuenta'); // Navegación tras inicio de sesión exitoso
           },
           error: (errorData) => {
-            console.error(errorData);
+            //console.error(errorData);
             this.loginError = errorData; // Manejo de error
           },
           complete: () => {

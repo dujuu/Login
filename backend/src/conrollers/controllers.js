@@ -34,13 +34,15 @@ try{
 // agregamos un usuario 
 const AgregarUsuario = async (req, res, next) => {
     const { nombre, apellido, correo, contraseña, usuario } = req.body;
-
+   
     try {
         const result = await pool.query(
             "INSERT INTO usuario (nombre, apellido, correo, contraseña, usuario) VALUES ($1, $2, $3, $4, $5) RETURNING *",
             [nombre, apellido, correo, contraseña, usuario]
         );
+        console.log(res);
         res.json(result.rows[0]);
+        
     } catch (error) {
         next(error);
     }
@@ -91,18 +93,15 @@ const ModificarUsuario = async(req,res,next)=> {
 const IniciarSesion = async (req, res, next) => {
     try {
         const { correo, contraseña } = req.body;
-        const result = await pool.query('SELECT correo, contraseña FROM usuario WHERE correo like "$1" ', [correo]);
-
+        const result = await pool.query('SELECT correo, contraseña FROM usuario WHERE correo like $1 ', [correo]);
+     //  el error esta en esta parte
         if (result.rows.length === 0) {
             return res.status(404).json({ message: "Usuario no encontrado" });
         }
 
         const usuario = result.rows[0];
-        // Aquí deberías verificar la contraseña. Esto depende de cómo almacenes las contraseñas
-        // Si usas hash, debes comparar el hash de la contraseña proporcionada con el almacenado
-
-        if (contraseña === usuario.contraseña) { // Esto es solo un ejemplo simple
-            // Enviar algún tipo de token o indicador de sesión exitosa
+        
+        if (contraseña === usuario.contraseña) { 
             res.json({ message: "Inicio de sesión exitoso" });
         } else {
             res.status(401).json({ message: "Contraseña incorrecta" });
