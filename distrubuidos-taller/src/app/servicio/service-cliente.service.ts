@@ -14,38 +14,33 @@ const httpOptions = {
 })
 export class ServiceClienteService {
 
-  servidor1=" http://localhost:3500/obtener";
-  servidor4="http://localhost:3500/IniciarSesion";
+  private servidor1=" http://localhost:3500/obtener";
+  private servidor4="http://localhost:3500/IniciarSesion";
 
-  servidor2="http://localhost:3500/agregar";
-  servidor3="http://localhost:3500/actualizar";
-
+  private servidor2="http://localhost:3500/agregar";
+  private servidor3="http://localhost:3500/actualizar";
 
   constructor (private servicio:HttpClient) {}
 
   MostrarDatos():Observable <any>{
     return this.servicio.get(this.servidor1);
   }
-
 //modificar si no me equivoco esto esta mal
   CrearUsuario(datos: Usuario):Observable <any>{
     console.log(JSON.stringify(datos));
     return this.servicio.post(this.servidor2,JSON.stringify(datos),httpOptions);
   }
-
-
-  //IniciarSesion(correo: '',contraseña:''): Observable <any>{
-  //  return this.servicio.get(this.servidor4);
-  //}
-  IniciarSesion(correo: string, contrasena: string): Observable<any> {
+  iniciarSesion(correo: string, contraseña: string): Observable<any> {
     // Preparar los datos para enviar
-    const datosLogin = { correo, contrasena };
-
+    const datosLogin = { correo, contraseña };
     // Realizar una solicitud POST con los datos de inicio de sesión
     return this.servicio.post(this.servidor4, datosLogin);
   }
 
- 
+  //IniciarSesion(correo: '',contraseña:''): Observable <any>{
+  //  return this.servicio.get(this.servidor4);
+  //}
+
 
 
 }

@@ -59,11 +59,9 @@ if (this.registerForm.valid) {
   //register(){
     //if(this.registerForm.valid){
       // captura lo que ingresa en el input
-      //this.servicioCliente.register(this.registerForm.value);
-
+      //this.servicioCliente.CrearUsuario(this.registerForm.value);
 
       //aqui donde envia una ves que se tenga todos los campos rellenos
-
 
       //this.router.navigateByUrl('/inicio');
       // en caso de error se borra

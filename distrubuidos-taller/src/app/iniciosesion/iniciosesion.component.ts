@@ -24,25 +24,6 @@ export class IniciosesionComponent {
 
 
   login() {
-   /* if (this.loginForm.valid) {
-      const email = this.loginForm.value.email;
-      const password = this.loginForm.value.password;
-
-      this.loginService.iniciarSesion(email, password).subscribe({
-        next: (userData) => {
-          console.log(userData);
-          this.router.navigateByUrl('/iniciar-sesion');
-        },
-        error: (errorData) => {
-          console.error(errorData);
-          this.loginError = errorData; // Manejo de error
-        },
-        complete: () => {
-          console.info("Inicio de sesión completado");
-          this.loginForm.reset(); // Resetear formulario
-        }
-      });*/
-
 
       console.info("llegue***************");
       console.info(this.loginForm.valid);
@@ -50,17 +31,17 @@ export class IniciosesionComponent {
       console.info(this.loginForm.value.contraseña);
       console.log("**********************")
       if (this.loginForm.valid){
-        const correo1 = this.loginForm.value.correo;
-        const contraseña1 = this.loginForm.value.contraseña;
+        const correo = this.loginForm.value.correo;
+        const contraseña = this.loginForm.value.contraseña;
         console.info("llegue el if ssuu");
 
-        this.servicioCliente.IniciarSesion(correo1, contraseña1).subscribe({
+        this.servicioCliente.iniciarSesion(correo, contraseña).subscribe({
           next: (userData) => {
             console.log(userData);
             this.router.navigateByUrl('/cuenta'); // Navegación tras inicio de sesión exitoso
           },
           error: (errorData) => {
-            //console.error(errorData);
+            console.error(errorData);
             this.loginError = errorData; // Manejo de error
           },
           complete: () => {
@@ -74,5 +55,6 @@ export class IniciosesionComponent {
       alert("Ingrese un Correo y una Contraseña valida");
     }
   }
+
 }
 

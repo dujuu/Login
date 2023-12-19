@@ -11,6 +11,8 @@ const {
 const router = Router();
 
 router.get('/obtener', ObtenerDatos);
+router.post('/IniciarSesion', IniciarSesion);
+router.post('/agregar', AgregarUsuario);
 
 //router.get('/obtener/:usuario', ObtenerUsuario);
 
@@ -18,11 +20,7 @@ router.get('/obtener', ObtenerDatos);
 // this.httpClient.post('/IniciarSesion', { correo, contraseña })
 //     .subscribe(...);
 
-router.post('/IniciarSesion', IniciarSesion);
-router.get('/agregar', AgregarUsuario);
-
 router.delete('/eliminar', EliminarUsuario);
-
 router.patch('/actualizar/:usuario', ModificarUsuario);
 
 //post

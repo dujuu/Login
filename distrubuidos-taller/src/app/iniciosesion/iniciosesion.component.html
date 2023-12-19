@@ -7,12 +7,12 @@
       <form [formGroup]="loginForm" class="mt-8 space-y-6"  method="POST">
           <p class="text-danger">{{loginError}}</p>
           <div>
-              <label for="email" class="block text-sm font-medium text-gray-700">Correo:</label>
-              <input formControlName="correo" name="correo" id="email" type="email" required class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" placeholder="Ingrese correo">
+              <label for="correo" class="block text-sm font-medium text-gray-700">Correo:</label>
+              <input formControlName="correo" name="correo" id="correo" type="email" required class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" placeholder="Ingrese correo">
           </div>
           <div>
-              <label for="password" class="block text-sm font-medium text-gray-700">Clave</label>
-              <input formControlName="contraseña" name="contraseña" id="password"  type="password" required class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" placeholder="**************">
+              <label for="contraseña" class="block text-sm font-medium text-gray-700">Clave</label>
+              <input formControlName="contraseña" name="contraseña" id="contraseña"  type="password" required class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" placeholder="**************">
               <p class="mt-2 text-sm text-indigo-500 hover:text-indigo-600 cursor-pointer" routerLink="/recuperar-clave">Olvidaste tu clave?</p>
           </div>
           <div>

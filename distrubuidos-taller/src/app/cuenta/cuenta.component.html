@@ -1,56 +1,27 @@
 <body class="bg-gray-100">
-  <nav class="bg-white shadow">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div class="flex justify-between h-16">
-              <div class="flex">
-                  <div class="flex-shrink-0 flex items-center">
-                      <img class="block lg:hidden h-8 w-auto" src="tu_logo.svg" alt="Logo">
-                      <img class="hidden lg:block h-8 w-auto" src="tu_logo.svg" alt="Logo">
-                  </div>
-              </div>
-              <div class="hidden sm:ml-6 sm:flex sm:items-center">
-                  <!-- Contenido del Menú -->
-                  <a href="#" class="text-gray-900 px-3 py-2 rounded-md text-sm font-medium">Dashboard</a>
-                  <a href="#" class="text-gray-900 px-3 py-2 rounded-md text-sm font-medium">Mapas</a>
-                  <a href="#" class="text-gray-900 px-3 py-2 rounded-md text-sm font-medium">Configuración</a>
-                </div>
 
-          </div>
-      </div>
-  </nav>
 
   <header class="bg-white shadow">
       <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-          <h1 class="text-3xl font-bold leading-tight text-gray-900">
-              Panel de Gestión de Localización
-          </h1>
-      </div>
-      <table>
+
+
+      <table class="border-separate border border-slate-400">
         <tr>
-          <th> Id</th>
-          <th> Nombre</th>
-          <th>Apellido</th>
-          <th> Usuario</th>
-          <th>Correo electronico</th>
+          <th class=" bordes border-indigo-900">Usuario</th>
+          <th class=" bordes border-indigo-900"> Nombre</th>
+          <th class=" bordes border-indigo-900">Apellido</th>
+          <th class=" bordes border-indigo-900"> Correo electronico</th>
         </tr>
         <tr *ngFor="let item of datosC">
-          <td>{{item.id}}</td>
-          <td>{{item.nombre}}</td>
-          <td>{{item.apellido}}</td>
-          <td>{{item.correo}}</td>
-          <td>{{item.usuario}}</td>
+          <td class=" bordes border-indigo-900">{{item.usuario}}</td>
+          <td class=" bordes border-indigo-900">{{item.nombre}}</td>
+          <td class=" bordes border-indigo-900">{{item.apellido}}</td>
+          <td class=" bordes border-indigo-900">{{item.correo}}</td>
+
         </tr>
       </table>
+    </div>
   </header>
 
-  <main>
-      <div class="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
-          <!-- Contenido Principal -->
-          <div class="px-4 py-6 sm:px-0">
-              <div class="border-4 border-dashed border-gray-200 rounded-lg h-96">
-                  <!-- mapa -->
-              </div>
-          </div>
-      </div>
-  </main>
+
 </body>
