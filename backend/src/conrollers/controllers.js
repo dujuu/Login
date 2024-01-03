@@ -1,4 +1,6 @@
 const pool = require("../bd");
+const jwt = require('jsonwebtoken');
+const { enviarCorreoRecuperacion } = require('../../../distrubuidos-taller/archivos/correo'); 
 
 
 //mostramos los usuarios
@@ -12,7 +14,7 @@ try{
 }
 
 
-// mostramos una tarea segun un dato espesifico
+// mostramos una tarea segun un dato especifico
 const ObtenerUsuario = async (req,res,next)=> {
 try{
     const {usuario} = req.params;
@@ -47,6 +49,9 @@ const AgregarUsuario = async (req, res, next) => {
         next(error);
     }
 };
+
+
+
 
 //eliminar un solo dato
 const EliminarUsuario = async(req,res,next)=> {
@@ -111,6 +116,56 @@ const IniciarSesion = async (req, res, next) => {
     }
 };
 
+const Recuperar = async (req, res, next) => {
+    try {
+        const { correo} = req.body;
+        const result = await pool.query('SELECT correo FROM usuario WHERE correo like $1 ', [correo]);
+
+        if (result.rows.length === 0) {
+            return res.status(404).json({ message: "Usuario no encontrado" });
+        }
+
+        const usuario = result.rows[0];
+        
+        if (contraseña === usuario.contraseña) { 
+            res.json({ message: "Inicio de sesión exitoso" });
+        } else {
+            res.status(401).json({ message: "Contraseña incorrecta" });
+        }
+    } catch (error) {
+        next(error);
+    }
+};
+
+
+const EnviarCorreoRecuperacion = async (req, res, next) => {
+    try {
+        const { usuario } = req.body;
+        const result = await pool.query('SELECT correo FROM usuario WHERE usuario like $1 ', [usuario]);
+        console.log("aqui pasooo*************************");
+        console.log("aqui pasooo*************************");
+        console.log("****")
+        res.json({ message: "CDIOOIDOIDOIDOAAAAAAAAAAAOOOOOOOOOOO" });
+
+
+
+        if (result.rows.length === 0) {
+            return res.status(404).json({ message: "Usuario no encontrado :c" });
+        }
+
+            
+        const correo = result.rows[0].correo;
+     
+        console.log(correo,"***************************************");
+        const token = generarTokenRecuperacion(correo)
+
+        enviarCorreoRecuperacion(correo, token);
+
+        res.json({ message: "Correo de recuperación enviado con éxito MOOOOOOOOOOOOOOOOOOOOOOOOOOOOO" });
+    } catch (error) {
+        next(error);
+    }
+};
 
 module.exports = {
     ObtenerDatos,
@@ -119,5 +174,7 @@ module.exports = {
     EliminarUsuario,
     ModificarUsuario,
     IniciarSesion,
+    Recuperar,
+    EnviarCorreoRecuperacion
 
 }

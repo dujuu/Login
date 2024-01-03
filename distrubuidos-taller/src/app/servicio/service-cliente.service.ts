@@ -20,16 +20,23 @@ export class ServiceClienteService {
   private servidor2="http://localhost:3500/agregar";
   private servidor3="http://localhost:3500/actualizar";
 
+  private servidor6="http://localhost:3500/Erecuperacion";
+  private servidor7="http://localhost:3500/Rcontraseña";
+
   constructor (private servicio:HttpClient) {}
 
   MostrarDatos():Observable <any>{
     return this.servicio.get(this.servidor1);
   }
 //modificar si no me equivoco esto esta mal
-  CrearUsuario(datos: Usuario):Observable <any>{
-    console.log(JSON.stringify(datos));
-    return this.servicio.post(this.servidor2,JSON.stringify(datos),httpOptions);
-  }
+CrearUsuario(nombre: string, apellido: string, correo: string, contraseña: string , usuario: string ):Observable <any>{
+  // console.log(JSON.stringify(datos));
+  const datosCrear = { nombre, apellido, correo, contraseña, usuario};
+   return this.servicio.post(this.servidor2,datosCrear);
+ }
+
+
+
   iniciarSesion(correo: string, contraseña: string): Observable<any> {
     // Preparar los datos para enviar
     const datosLogin = { correo, contraseña };
@@ -37,9 +44,16 @@ export class ServiceClienteService {
     return this.servicio.post(this.servidor4, datosLogin);
   }
 
-  //IniciarSesion(correo: '',contraseña:''): Observable <any>{
-  //  return this.servicio.get(this.servidor4);
-  //}
+  EnviarCorreoRecuperacion(usuario: string): Observable<any> {
+    console.log(usuario,"hastta aqu se ññega bien");
+    const datosUsuario = { usuario }
+    console.log("usuario:",usuario,"datosuuuuuuuu",datosUsuario);
+    return this.servicio.post(this.servidor6, datosUsuario);
+  }
+
+  RecuperarContraseña(correo: string, token: string, nuevaContraseña: string): Observable<any>{
+    return this.servicio.post(this.servidor7, { correo, token, nuevaContraseña });
+  }
 
 
 

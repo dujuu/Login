@@ -10,61 +10,46 @@ import { ServiceClienteService } from '../servicio/service-cliente.service';
   templateUrl: './crear-cuenta.component.html',
   styleUrls: ['./crear-cuenta.component.css']
 })
+
 export class CrearCuentaComponent implements OnInit {
-  datosC:Array<Usuario>=[];
-  registerForm: FormGroup = this.form.group({
-
-    nombre:['', Validators.required],
-    apellido:['',Validators.required],
-    correo:['',Validators.required],
-    contraseña:['',Validators.required],
-    usuario:['',Validators.required]
-
+  datosC: Array<Usuario> = [];
+  registerForm: FormGroup = this.formBuilder.group({
+    nombre: ['', Validators.required],
+    apellido: ['', Validators.required],
+    correo: ['', [Validators.required, Validators.email]],
+    contraseña: ['', Validators.required],
+    usuario: ['', Validators.required]
   });
 
-  //datosC:Array<Usuario>=[];
- /* registerForm=this.formBuilder.group({
-    email:['',[Validators.required,Validators.email]],
-    password: ['',Validators.required],
+  constructor(private formBuilder: FormBuilder, private servicioCliente: ServiceClienteService, private router: Router) {}
+
+  ngOnInit(): void {}
+
+  crearCliente() {
+    if (this.registerForm.valid) {
+      const nombre = this.registerForm.value.nombre;
+      const apellido = this.registerForm.value.apellido;
+      const correo = this.registerForm.value.correo;
+      const contraseña = this.registerForm.value.contraseña;
+      const usuario = this.registerForm.value.usuario;
+
+      this.servicioCliente.CrearUsuario(nombre, apellido, correo, contraseña, usuario).subscribe({
+        next: (userData) => {
+          console.log(userData);
+          this.router.navigateByUrl('/cuenta');
+        },
+        error: (errorData) => {
+          console.error(errorData);
+
+        },
+        complete: () => {
+          console.info('Creación de usuario completada');
+          this.registerForm.reset(); // Resetear formulario
+        }
+      });
+    } else {
+      alert('Por favor, complete todos los campos correctamente.');
+    }
   }
-  )*/
-  constructor(private form:FormBuilder, private servicioCliente: ServiceClienteService ){
-
-  }
-
-
-  ngOnInit():void{
-
-  }
-
-  crearCliente(){
-if (this.registerForm.valid) {
-      this.servicioCliente.CrearUsuario({
-        id: 0, // Asumiendo que el ID es manejado por el backend
-        nombre: this.registerForm.get("nombre")?.value,
-        apellido: this.registerForm.get("apellido")?.value,
-        correo: this.registerForm.get("correo")?.value,
-        contraseña: this.registerForm.get("contraseña")?.value,
-        usuario: this.registerForm.get("usuario")?.value
-
-        //return this.servicioCliente.CrearUsuario(datosc)
-    });
-  }
-
 }
-}
 
-
-
-  //register(){
-    //if(this.registerForm.valid){
-      // captura lo que ingresa en el input
-      //this.servicioCliente.CrearUsuario(this.registerForm.value);
-
-      //aqui donde envia una ves que se tenga todos los campos rellenos
-
-      //this.router.navigateByUrl('/inicio');
-      // en caso de error se borra
-      //this.registerForm.reset();
-   // }
-  //}

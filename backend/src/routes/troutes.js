@@ -2,10 +2,11 @@ const { Router} = require('express');
 const { 
     EliminarUsuario,
     ObtenerDatos,
-    ObtenerUsuario,
+    obtenerUsuario,
     AgregarUsuario,
     ModificarUsuario,
-    IniciarSesion, 
+    IniciarSesion,
+    EnviarCorreoRecuperacion, 
 } = require('../conrollers/controllers');
 
 const router = Router();
@@ -14,11 +15,9 @@ router.get('/obtener', ObtenerDatos);
 router.post('/IniciarSesion', IniciarSesion);
 router.post('/agregar', AgregarUsuario);
 
-//router.get('/obtener/:usuario', ObtenerUsuario);
+router.post('/Erecuperacion', EnviarCorreoRecuperacion);
 
-//router.post('/Iniciar/:correo,contraseña',IniciarSesion);
-// this.httpClient.post('/IniciarSesion', { correo, contraseña })
-//     .subscribe(...);
+//router.get('/obtener/:usuario', ObtenerUsuario);
 
 router.delete('/eliminar', EliminarUsuario);
 router.patch('/actualizar/:usuario', ModificarUsuario);
